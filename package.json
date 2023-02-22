@@ -1,0 +1,15 @@
+{
+  "name": "strapi-skate",
+  "version": "1.0.0",
+  "workspaces": [
+    "frontend/*",
+    "backend/*"
+  ],
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Brandon Mitchell",
+  "license": "ISC"
+}
