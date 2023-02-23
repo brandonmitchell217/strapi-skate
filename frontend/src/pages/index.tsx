@@ -3,38 +3,14 @@ import Image from "next/image";
 import { GetStaticProps, InferGetStaticPropsType } from "next";
 import { fetchQuery } from "../lib/util";
 import Layout from "@/layouts/Layout";
-
-type pagination = {
-  page: number;
-  pageSize: number;
-  pageCount: number;
-  total: number;
-};
-
-type Props = {
-  data: {
-    id: number;
-    attributes: {
-      title: string;
-      location: string;
-      createdAt: string;
-      updatedAt: string;
-      publishedAt: string;
-    };
-  }[];
-  meta: { pagination: pagination };
-};
-
-type RestaurantProps = {
-  restaurants: Props;
-};
+import { Props, RestaurantProps, pagination } from "@/lib/types";
 
 export default function Home({ restaurants }: RestaurantProps) {
   const data = restaurants.data.map((att) => {
     return att.attributes;
   });
 
-  console.log(data);
+  // console.log(data);
 
   return (
     <Layout>

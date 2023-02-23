@@ -11,5 +11,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Brandon Mitchell",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "turbo": "^1.8.2"
+  }
 }

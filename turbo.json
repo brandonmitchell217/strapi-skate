@@ -2,8 +2,17 @@
   "$schema": "https://turbo.build/schema.json",
   "pipeline": {
     "build": {
-      "outputs": [".next/**"]
+      "dependsOn": ["^build"],
+      "outputs": [".frontend/**"]
     },
-    "lint": {}
+    "test": {
+      "dependsOn": ["build"],
+
+      "inputs": ["src/**/*.tsx", "src/**/*.ts", "test/**/*.ts", "test/**/*.tsx"]
+    },
+    "lint": {},
+    "deploy": {
+      "dependsOn": ["build", "test", "lint"]
+    }
   }
 }

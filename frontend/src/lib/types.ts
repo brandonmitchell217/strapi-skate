@@ -25,3 +25,6 @@ export interface Props {
 export interface RestaurantProps {
   restaurants: Props;
 }
+export interface ProductProps {
+  products: Props;
+}
