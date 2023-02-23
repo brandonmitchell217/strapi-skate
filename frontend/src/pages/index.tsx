@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import { GetStaticProps, InferGetStaticPropsType } from "next";
-import { fetchQuery } from "../lib/util";
+import { fetchQuery } from "@/lib/util";
 import Layout from "@/layouts/Layout";
 import ProductCard from "@/components/ProductCard";
 import { Props, RestaurantProps, pagination, ProductProps } from "@/lib/types";
@@ -17,17 +17,8 @@ export default function Home({ products }: ProductProps) {
     <Layout>
       <h1 className="text-red-600 text-5xl">Home</h1>
       <div>
-        <h2 className="font-bold">Store</h2>
-        <div className="px-5 flex gap-6">
-          {/* {data.map((product) => (
-            <ProductCard
-              image={product?.image?.data.attributes.url}
-              alt="stuff"
-              title={product.title}
-              price={product.price}
-              category={product.category}
-            />
-          ))} */}
+        <h2 className="font-bold text-3xl">Some products</h2>
+        <div className="px-5 my-16 flex justify-center gap-6">
           {products.data.map((product) => (
             <ProductCard
               key={product.id}

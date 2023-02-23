@@ -42,7 +42,9 @@ export default function ProductCard({
         <button onClick={() => increaseCartQuantity(id, title, image)}>
           Add to cart
         </button>
-        <span className="block text-[12px] text-gray-600">{category}</span>
+        <span className="block text-[12px] text-gray-600">
+          {category?.toLowerCase()}
+        </span>
       </div>
     </div>
   );
