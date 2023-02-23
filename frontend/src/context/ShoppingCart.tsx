@@ -1,6 +1,5 @@
 import React from "react";
 import Cart from "@/components/Cart";
-// import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { useLocalStorage } from "usehooks-ts";
 
 type ShoppingCartProviderProps = {

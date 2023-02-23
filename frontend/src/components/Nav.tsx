@@ -1,11 +1,9 @@
 import Link from "next/link";
 import React from "react";
 import { IoCart } from "react-icons/io5";
-import Cart from "@/components/Cart";
 import { useShoppingCart } from "@/context/ShoppingCart";
 
 export default function Nav() {
-  //   const [isOpen, setIsOpen] = React.useState(false);
   const { openCart, cartQuantity } = useShoppingCart();
   return (
     <nav className="py-6 px-10 flex justify-between items-center relative">

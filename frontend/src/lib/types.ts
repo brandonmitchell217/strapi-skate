@@ -14,6 +14,9 @@ export interface Props {
       location?: string;
       description?: string;
       category?: string;
+      name?: string;
+      hometown?: string;
+      age?: number;
       image?: {
         data: {
           attributes: {
@@ -40,4 +43,8 @@ export interface RestaurantProps {
 }
 export interface ProductProps {
   products: Props;
+}
+
+export interface TeamMembersProps {
+  teamMembers: Props;
 }

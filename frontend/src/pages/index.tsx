@@ -11,7 +11,7 @@ export default function Home({ products }: ProductProps) {
     return product.attributes;
   });
 
-  console.log(products);
+  // console.log(products);
 
   return (
     <Layout>
