@@ -9,10 +9,23 @@ export interface Props {
   data: {
     id: number;
     attributes: {
+      key?: string | number;
       title?: string;
       location?: string;
       description?: string;
-      image?: string;
+      category?: string;
+      image?: {
+        data: {
+          attributes: {
+            formats: {
+              thumbnail: {
+                url: string;
+              };
+            };
+            url: string;
+          };
+        };
+      };
       price?: number;
       createdAt: string;
       updatedAt: string;
