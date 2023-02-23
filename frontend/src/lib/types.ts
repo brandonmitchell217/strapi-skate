@@ -10,7 +10,7 @@ export interface Props {
     id: number;
     attributes: {
       key?: string | number;
-      title?: string;
+      title: string;
       location?: string;
       description?: string;
       category?: string;

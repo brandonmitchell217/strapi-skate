@@ -11,7 +11,7 @@ export default function Home({ products }: ProductProps) {
     return product.attributes;
   });
 
-  console.log(data);
+  console.log(products);
 
   return (
     <Layout>
@@ -19,14 +19,24 @@ export default function Home({ products }: ProductProps) {
       <div>
         <h2 className="font-bold">Store</h2>
         <div className="px-5 flex gap-6">
-          {data.map((product) => (
+          {/* {data.map((product) => (
             <ProductCard
-              key={product.title}
               image={product?.image?.data.attributes.url}
               alt="stuff"
               title={product.title}
               price={product.price}
               category={product.category}
+            />
+          ))} */}
+          {products.data.map((product) => (
+            <ProductCard
+              key={product.id}
+              id={product.id}
+              image={product?.attributes?.image?.data.attributes.url}
+              alt="stuff"
+              title={product.attributes.title}
+              price={product.attributes.price}
+              category={product.attributes.category}
             />
           ))}
         </div>
