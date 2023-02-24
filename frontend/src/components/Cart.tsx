@@ -9,7 +9,7 @@ interface CartProps {
 
 export default function Cart({ isOpen }: CartProps) {
   const { closeCart, cartItems } = useShoppingCart();
-  console.log(cartItems);
+  // console.log(cartItems);
   return (
     <div
       className={`absolute z-50 top-0 h-full bg-red-600 right-0 ${
