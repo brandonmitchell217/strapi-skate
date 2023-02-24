@@ -26,28 +26,39 @@ export default function ProductCard({
   const { increaseCartQuantity } = useShoppingCart();
 
   return (
-    <div className="max-w-xs w-1/3 border-2 shadow-lg">
+    <div className="card card-compact w-full xl:w-80 bg-base-100 shadow-xl">
       <Link href={`/store/${id}`}>
-        <div className="h-[300px] w-full relative">
-          <Image
-            src={`${base}${image}`}
-            alt={alt ?? "image of product"}
-            fill={true}
-            //  placeholder="blur"
-            //  blurDataURL={`${base}${image}`}
-          />
-        </div>
-        <div className="p-3">
-          <h3 className="font-bold">{title}</h3>
+        <Image
+          src={`${base}${image}`}
+          alt={alt ?? "image of product"}
+          width={300}
+          height={300}
+          className="m-auto"
+          //  placeholder="blur"
+          //  blurDataURL={`${base}${image}`}
+        />
+
+        <div className="card-body">
+          <h3 className="card-title">{title}</h3>
           <p>${price}</p>
-          <button onClick={() => increaseCartQuantity(id, title, image)}>
+          <span className="block text-[12px]">{category?.toLowerCase()}</span>
+          <button
+            onClick={() => increaseCartQuantity(id, title, image)}
+            className={`btn btn-primary `}
+          >
             Add to cart
           </button>
-          <span className="block text-[12px] text-gray-600">
-            {category?.toLowerCase()}
-          </span>
         </div>
       </Link>
     </div>
   );
+}
+
+{
+  /* <button
+onClick={() => increaseCartQuantity(id, title, image)}
+className={`btn btn-primary `}
+>
+Add to cart
+</button> */
 }

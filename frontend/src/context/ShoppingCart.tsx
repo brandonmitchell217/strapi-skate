@@ -21,6 +21,7 @@ type ShoppingCartContextProps = {
   removeFromCart: (id: number) => void;
   cartQuantity: number;
   cartItems: CartItem[];
+  setCartItems: React.Dispatch<React.SetStateAction<CartItem[]>>;
 };
 
 const ShoppingCartContext = React.createContext({} as ShoppingCartContextProps);
@@ -77,6 +78,7 @@ export default function ShoppingCartProvider({
         removeFromCart,
         cartQuantity,
         cartItems,
+        setCartItems,
       }}
     >
       {children}

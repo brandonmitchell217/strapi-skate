@@ -18,13 +18,12 @@ export default function Home({ products }: ProductProps) {
       <h1 className="text-red-600 text-5xl">Home</h1>
       <div>
         <h2 className="font-bold text-3xl">Some products</h2>
-        <div className="px-5 my-16 flex justify-center gap-6">
+        <div className="px-5 my-16 grid grid-cols-1 md:grid-cols-2 md:grid-rows-2 xl:grid-cols-4 xl:grid-rows-1 place-items-center gap-6">
           {products.data.map((product) => (
             <ProductCard
               key={product.id}
               id={product.id}
               image={product?.attributes?.image?.data.attributes.url}
-              alt="stuff"
               title={product.attributes.title}
               price={product.attributes.price}
               category={product.attributes.category}
