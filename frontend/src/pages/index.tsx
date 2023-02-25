@@ -14,7 +14,7 @@ export default function Home({ products }: ProductProps) {
   // console.log(products);
 
   return (
-    <Layout>
+    <>
       <h1 className="text-red-600 text-5xl">Home</h1>
       <div>
         <h2 className="font-bold text-3xl">Some products</h2>
@@ -31,7 +31,7 @@ export default function Home({ products }: ProductProps) {
           ))}
         </div>
       </div>
-    </Layout>
+    </>
   );
 }
 

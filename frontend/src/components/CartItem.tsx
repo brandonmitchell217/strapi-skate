@@ -20,15 +20,20 @@ export default function CartItem({
 
   return (
     <div className="w-full flex justify-center items-center">
-      <div className="h-24 w-24 relative mr-16">
-        <Image src={`${base}${image}`} alt="image of product" fill={true} />
+      <div className="h-24 w-24 relative mr-12">
+        <Image
+          src={`${base}${image}`}
+          alt="image of product"
+          fill={true}
+          className="rounded-md"
+        />
       </div>
       <div className="flex items-center gap-4">
         <h4>{title}</h4>
         <span className="font-light text-sm">x{quantity}</span>
       </div>
       <button
-        className="h-4 cursor-pointer border ml-8"
+        className="p-1 cursor-pointer border ml-8 rounded-full text-warning border-warning"
         onClick={() => removeFromCart(id)}
       >
         <IoClose size={16} />

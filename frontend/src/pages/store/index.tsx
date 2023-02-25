@@ -12,7 +12,7 @@ export default function Store({ products }: ProductProps) {
   console.log(products);
 
   return (
-    <Layout>
+    <>
       <h1>Store</h1>
       <div className="px-5 my-16 grid grid-cols-1 md:grid-cols-2 md:grid-rows-2 xl:grid-cols-4 xl:grid-rows-1 place-items-center gap-6">
         {products.data.map((product) => (
@@ -25,7 +25,7 @@ export default function Store({ products }: ProductProps) {
           />
         ))}
       </div>
-    </Layout>
+    </>
   );
 }
 

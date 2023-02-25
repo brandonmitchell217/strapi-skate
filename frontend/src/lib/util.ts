@@ -16,4 +16,13 @@ async function fetchQuery(path: string, params = null as string | null) {
   return data;
 }
 
-export { baseUrl, base, fetchQuery };
+const CURRENCY_FORMATTER = new Intl.NumberFormat(undefined, {
+  currency: "USD",
+  style: "currency",
+});
+
+function formatCurrency(number: number) {
+  return CURRENCY_FORMATTER.format(number);
+}
+
+export { baseUrl, base, fetchQuery, formatCurrency };

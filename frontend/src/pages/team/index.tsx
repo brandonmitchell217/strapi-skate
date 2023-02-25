@@ -13,7 +13,7 @@ export default function Team({ teamMembers }: TeamMembersProps) {
 
   console.log(teamMembers);
   return (
-    <Layout>
+    <>
       <h1 className="font-bold text-5xl">Team</h1>
       <div className="flex justify-center items-center gap-6 flex-wrap">
         {teamMembers.data.map((member) => (
@@ -26,7 +26,7 @@ export default function Team({ teamMembers }: TeamMembersProps) {
           />
         ))}
       </div>
-    </Layout>
+    </>
   );
 }
 

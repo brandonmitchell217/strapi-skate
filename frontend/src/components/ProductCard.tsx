@@ -1,7 +1,5 @@
 import React from "react";
 import Image from "next/image";
-import { ProductProps, Props } from "@/lib/types";
-import { InferGetStaticPropsType } from "next";
 import { base } from "@/lib/util";
 import Link from "next/link";
 import { useShoppingCart } from "@/context/ShoppingCart";
@@ -52,13 +50,4 @@ export default function ProductCard({
       </Link>
     </div>
   );
-}
-
-{
-  /* <button
-onClick={() => increaseCartQuantity(id, title, image)}
-className={`btn btn-primary `}
->
-Add to cart
-</button> */
 }
