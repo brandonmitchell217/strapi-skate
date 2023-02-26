@@ -30,7 +30,9 @@ export default function ItemPage({ product }: any) {
               <h1>{product.data.attributes.title}</h1>
               <p>${product.data.attributes.price}</p>
             </div>
-            <p>***grip not included</p>
+            {product.data.attributes.category === "deck" && (
+              <p>***grip not included</p>
+            )}
           </div>
           <button
             className="max-w-md w-full btn btn-primary"

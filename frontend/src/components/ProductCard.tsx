@@ -35,19 +35,18 @@ export default function ProductCard({
           //  placeholder="blur"
           //  blurDataURL={`${base}${image}`}
         />
-
-        <div className="card-body">
-          <h3 className="card-title">{title}</h3>
-          <p>${price}</p>
-          <span className="block text-[12px]">{category?.toLowerCase()}</span>
-          <button
-            onClick={() => increaseCartQuantity(id, title, image)}
-            className={`btn btn-primary `}
-          >
-            Add to cart
-          </button>
-        </div>
       </Link>
+      <div className="card-body">
+        <h3 className="card-title">{title}</h3>
+        <p>${price}</p>
+        <span className="block text-[12px]">{category?.toLowerCase()}</span>
+        <button
+          onClick={() => increaseCartQuantity(id, title, image)}
+          className={`btn btn-primary`}
+        >
+          Add to cart
+        </button>
+      </div>
     </div>
   );
 }
