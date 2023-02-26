@@ -7,6 +7,7 @@ import { useShoppingCart } from "@/context/ShoppingCart";
 
 export default function ItemPage({ product }: any) {
   const { increaseCartQuantity } = useShoppingCart();
+  const [quantity, setQuantity] = React.useState(0);
   let id: number = product.data.id;
   let title: string = product.data.attributes.title;
   let imageUrl: string = product.data.attributes.image.data.attributes.url;
@@ -34,12 +35,40 @@ export default function ItemPage({ product }: any) {
               <p>***grip not included</p>
             )}
           </div>
-          <button
-            className="max-w-md w-full btn btn-primary"
-            onClick={() => increaseCartQuantity(id, title, imageUrl)}
-          >
-            Add to cart
-          </button>
+          <div className="flex gap-4">
+            <form className="flex justify-center items-center">
+              <div
+                className="px-2 cursor-pointer border"
+                onClick={() =>
+                  setQuantity(quantity > 0 ? quantity - 1 : quantity)
+                }
+              >
+                -
+              </div>
+              <input
+                className="input-xs w-[25px]"
+                type="number"
+                name="quantity"
+                id="quantity"
+                min={0}
+                value={quantity}
+              />
+              <div
+                className="px-2 cursor-pointer border"
+                onClick={() => setQuantity(quantity + 1)}
+              >
+                +
+              </div>
+            </form>
+            <button
+              className="btn btn-primary"
+              onClick={() =>
+                increaseCartQuantity(id, title, imageUrl, quantity)
+              }
+            >
+              Add to cart
+            </button>
+          </div>
         </div>
       </div>
     </>

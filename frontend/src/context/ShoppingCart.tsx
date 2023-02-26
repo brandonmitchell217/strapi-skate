@@ -17,7 +17,12 @@ type ShoppingCartContextProps = {
   openCart: () => void;
   closeCart: () => void;
   getItemQuantity: (id: number) => number;
-  increaseCartQuantity: (id: number, title: string, image: string) => void;
+  increaseCartQuantity: (
+    id: number,
+    title: string,
+    image: string,
+    quantity: number
+  ) => void;
   removeFromCart: (id: number) => void;
   cartQuantity: number;
   cartItems: CartItem[];
@@ -47,21 +52,43 @@ export default function ShoppingCartProvider({
     return cartItems.find((item) => item.id === id)?.quantity || 0;
   }
 
-  function increaseCartQuantity(id: number, title: string, image: string) {
+  // function increaseCartQuantity(id: number, title: string, image: string) {
+  //   setCartItems((currItems) => {
+  //     if (currItems.find((item) => item.id === id) == null) {
+  //       return [...currItems, { id, quantity: 1, title, image }];
+  //     } else {
+  //       return currItems.map((item) => {
+  //         if (item.id === id) {
+  //           return { ...item, quantity: item.quantity + 1, title, image };
+  //         } else {
+  //           return item;
+  //         }
+  //       });
+  //     }
+  //   });
+  // }
+  function increaseCartQuantity(
+    id: number,
+    title: string,
+    image: string,
+    quantity: number
+  ) {
     setCartItems((currItems) => {
-      if (currItems.find((item) => item.id === id) == null) {
-        return [...currItems, { id, quantity: 1, title, image }];
-      } else {
+      const existingItem = currItems.find((item) => item.id === id);
+      if (existingItem) {
         return currItems.map((item) => {
           if (item.id === id) {
-            return { ...item, quantity: item.quantity + 1, title, image };
+            return { ...item, quantity: item.quantity + quantity };
           } else {
             return item;
           }
         });
+      } else {
+        return [...currItems, { id, quantity, title, image }];
       }
     });
   }
+
   function removeFromCart(id: number) {
     setCartItems((currItems) => {
       return currItems.filter((item) => item.id !== id);
