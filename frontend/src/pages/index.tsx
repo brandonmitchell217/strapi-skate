@@ -5,6 +5,7 @@ import { fetchQuery } from "@/lib/util";
 import Layout from "@/layouts/Layout";
 import ProductCard from "@/components/ProductCard";
 import { Props, RestaurantProps, pagination, ProductProps } from "@/lib/types";
+import Carousel from "@/components/Carousel";
 
 export default function Home({ products }: ProductProps) {
   const data = products.data.map((product) => {
@@ -15,6 +16,7 @@ export default function Home({ products }: ProductProps) {
 
   return (
     <>
+      <Carousel />
       <h1 className="text-red-600 text-5xl">Home</h1>
       <div>
         <h2 className="font-bold text-3xl">Some products</h2>
