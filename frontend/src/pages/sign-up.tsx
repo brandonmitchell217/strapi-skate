@@ -40,6 +40,7 @@ const SignUp = ({ ctx }: any) => {
       }
     }
   }
+
   return (
     <div>
       <Head>
