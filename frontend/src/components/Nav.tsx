@@ -2,9 +2,18 @@ import Link from "next/link";
 import React from "react";
 import { IoCart } from "react-icons/io5";
 import { useShoppingCart } from "@/context/ShoppingCart";
+import { HiUser } from "react-icons/hi";
+import { useRouter } from "next/router";
+import { destroyCookie } from "nookies";
 
 export default function Nav() {
+  const router = useRouter();
   const { openCart, cartQuantity } = useShoppingCart();
+
+  const handleSignOut = () => {
+    destroyCookie({}, "token");
+    router.push("/sign-up");
+  };
   return (
     <nav className="py-6 px-10 flex justify-between items-center relative">
       <div>
@@ -22,6 +31,12 @@ export default function Nav() {
           </li>
           <li>
             <Link href={"/store"}>Store</Link>
+          </li>
+          <li onClick={() => router.push("/sign-up")}>
+            <HiUser size={28} />
+          </li>
+          <li>
+            <button onClick={handleSignOut}>Sign Out</button>
           </li>
           <li className="relative cursor-pointer" onClick={openCart}>
             <IoCart size={28} />

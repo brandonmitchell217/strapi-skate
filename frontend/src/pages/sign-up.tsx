@@ -4,10 +4,13 @@ import axios from "axios";
 import { setCookie, parseCookies } from "nookies";
 import { useRouter } from "next/router";
 
-const SignUp = () => {
+const SignUp = ({ ctx }: any) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const router = useRouter();
+  const isAuthenticated = !!parseCookies().token;
+
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     const res = await axios.post(
@@ -24,6 +27,19 @@ const SignUp = () => {
     });
     console.log(res);
   };
+
+  if (isAuthenticated && ["/sign-up", "/sign-in"].indexOf(router.asPath) > -1) {
+    if (typeof window !== "undefined") {
+      router.push("/");
+    } else {
+      if (ctx.res) {
+        ctx.res.writeHead(301, {
+          Location: "/",
+        });
+        ctx.res.end();
+      }
+    }
+  }
   return (
     <div>
       <Head>
@@ -103,23 +119,24 @@ const SignUp = () => {
   );
 };
 
-SignUp.getInitialProps = (ctx: any) => {
-  const isAuthenticated = !!parseCookies(ctx).token;
-  // When the user is authenticated, don't let the user visit the
-  // sign-in and sign-up routes
-  if (isAuthenticated && ["/sign-up", "/sign-in"].indexOf(ctx.asPath) > -1) {
-    if (typeof window !== "undefined") {
-      useRouter().push("/");
-    } else {
-      if (ctx.res) {
-        ctx.res.writeHead(301, {
-          Location: "/",
-        });
-        ctx.res.end();
-      }
-    }
-  }
-  return {};
-};
+// SignUp.getInitialProps = (ctx: any) => {
+//   const router = useRouter();
+//   const isAuthenticated = !!parseCookies(ctx).token;
+//   // When the user is authenticated, don't let the user visit the
+//   // sign-in and sign-up routes
+//   if (isAuthenticated && ["/sign-up", "/sign-in"].indexOf(ctx.asPath) > -1) {
+//     if (typeof window !== "undefined") {
+//       router.push("/");
+//     } else {
+//       if (ctx.res) {
+//         ctx.res.writeHead(301, {
+//           Location: "/",
+//         });
+//         ctx.res.end();
+//       }
+//     }
+//   }
+//   return {};
+// };
 
 export default SignUp;
