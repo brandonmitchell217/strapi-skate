@@ -21,19 +21,20 @@ export default function ProductCard({
   price,
   category,
 }: ProductCardProps) {
-  const { increaseCartQuantity } = useShoppingCart();
+  const { increaseCartQuantity, getItemQuantity } = useShoppingCart();
+  const quantity = getItemQuantity(id);
 
   return (
     <div className="card card-compact w-full xl:w-80 bg-base-100 shadow-xl">
-      <Link href={`/store/${id}`}>
+      <Link href={`/store/${id}`} className="group">
         <Image
           src={`${base}${image}`}
           alt={alt ?? "image of product"}
           width={300}
           height={300}
-          className="m-auto"
-          //  placeholder="blur"
-          //  blurDataURL={`${base}${image}`}
+          className="m-auto group-hover:scale-105 transition-all duration-300"
+          placeholder="blur"
+          blurDataURL={`${base}${image}`}
         />
       </Link>
       <div className="card-body">
@@ -41,7 +42,7 @@ export default function ProductCard({
         <p>${price}</p>
         <span className="block text-[12px]">{category?.toLowerCase()}</span>
         <button
-          onClick={() => increaseCartQuantity(id, title, image)}
+          onClick={() => increaseCartQuantity(id, title, image, quantity)}
           className={`btn btn-primary`}
         >
           Add to cart

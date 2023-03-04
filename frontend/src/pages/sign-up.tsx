@@ -26,6 +26,7 @@ const SignUp = ({ ctx }: any) => {
       path: "/",
     });
     console.log(res);
+    router.push("/");
   };
 
   if (isAuthenticated && ["/sign-up", "/sign-in"].indexOf(router.asPath) > -1) {
