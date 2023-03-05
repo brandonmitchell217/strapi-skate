@@ -1,8 +1,11 @@
 import React from "react";
+import { setCookie } from "nookies";
+import { useRouter } from "next/router";
 
-function LoginForm() {
+function SignIn() {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const router = useRouter();
 
   async function authenticateUser(email: string, password: string) {
     try {
@@ -30,9 +33,18 @@ function LoginForm() {
     }
   }
 
-  const handleSubmit = (e: React.SyntheticEvent) => {
-    e.preventDefault();
-    authenticateUser(email, password);
+  const handleSubmit = async () => {
+    //  e.preventDefault();
+    try {
+      const user = await authenticateUser(email, password);
+      setCookie(null, "user", JSON.stringify(user), {
+        maxAge: 30 * 24 * 60 * 60,
+        path: "/",
+      });
+      router.push("/");
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -54,7 +66,7 @@ function LoginForm() {
         />
         <button
           className="btn btn-primary"
-          type="submit"
+          type="button"
           onClick={handleSubmit}
         >
           Log In
@@ -64,4 +76,4 @@ function LoginForm() {
   );
 }
 
-export default LoginForm;
+export default SignIn;

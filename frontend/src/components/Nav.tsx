@@ -5,18 +5,17 @@ import { useShoppingCart } from "@/context/ShoppingCart";
 import { HiUser } from "react-icons/hi";
 import { useRouter } from "next/router";
 import { destroyCookie } from "nookies";
-import { setCookie, parseCookies } from "nookies";
+import { useAuth } from "@/context/AuthContext";
 
 export default function Nav() {
   const router = useRouter();
   const { openCart, cartQuantity } = useShoppingCart();
+  const { user, signOut } = useAuth();
   const [logSign, setLogSign] = React.useState(false);
-  const [login, setLogin] = React.useState(false);
-  const isAuthenticated = !!parseCookies().token;
 
   const handleSignOut = () => {
-    destroyCookie({}, "token");
-    isAuthenticated ? router.push("/") : router.push("/sign-up");
+    signOut();
+    router.push("/sign-in");
   };
 
   return (
@@ -47,12 +46,12 @@ export default function Nav() {
               <button
                 className="btn btn-primary"
                 onClick={() => {
-                  isAuthenticated ? handleSignOut() : router.push("/sign-in");
+                  user ? handleSignOut() : router.push("/sign-in");
                 }}
               >
-                {isAuthenticated ? "Log Out" : "Log In"}
+                {user ? "Log Out" : "Log In"}
               </button>
-              {!isAuthenticated && (
+              {!user && (
                 <button
                   className="btn btn-outline"
                   onClick={() => router.push("/sign-up")}
@@ -61,9 +60,6 @@ export default function Nav() {
                 </button>
               )}
             </div>
-          </li>
-          <li>
-            <button onClick={handleSignOut}>Sign Out</button>
           </li>
           <li className="relative cursor-pointer" onClick={openCart}>
             <IoCart size={28} />
