@@ -32,8 +32,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
   }, []);
 
   async function signIn(email: string, password: string) {
-    // perform authentication logic here
-    // if authentication is successful, set the user state and save the user in cookies
     setUser({ name: "John Doe", email });
     setCookie({}, "user", JSON.stringify({ name: "John Doe", email }), {
       maxAge: 30 * 24 * 60 * 60,
@@ -42,7 +40,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
   }
 
   function signOut() {
-    // remove the user state and user cookie
     setUser(null);
     destroyCookie({}, "user");
     router.push("/sign-in");

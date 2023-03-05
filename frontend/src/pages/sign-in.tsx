@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import { setCookie } from "nookies";
 import { useRouter } from "next/router";
 
@@ -9,24 +10,19 @@ function SignIn() {
 
   async function authenticateUser(email: string, password: string) {
     try {
-      const response = await fetch("http://localhost:1337/api/auth/local", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
+      const response = await axios.post(
+        "http://localhost:1337/api/auth/local",
+        {
           identifier: email,
           password: password,
-        }),
-      });
+        }
+      );
 
-      const data = await response.json();
-
-      if (response.ok) {
-        console.log(data);
-        return data.user;
+      if (response.status === 200) {
+        console.log(response.data);
+        return response.data.user;
       } else {
-        throw new Error(data.message[0].messages[0].message);
+        throw new Error(response.data.message[0].messages[0].message);
       }
     } catch (error) {
       throw error;
@@ -34,7 +30,6 @@ function SignIn() {
   }
 
   const handleSubmit = async () => {
-    //  e.preventDefault();
     try {
       const user = await authenticateUser(email, password);
       setCookie(null, "user", JSON.stringify(user), {

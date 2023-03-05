@@ -1,13 +1,12 @@
-import React, { useState } from "react";
-import Head from "next/head";
+import React from "react";
 import axios from "axios";
 import { setCookie, parseCookies } from "nookies";
 import { useRouter } from "next/router";
 
 const SignUp = ({ ctx }: any) => {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = React.useState("");
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
   const router = useRouter();
   const isAuthenticated = !!parseCookies().token;
 
@@ -44,10 +43,6 @@ const SignUp = ({ ctx }: any) => {
 
   return (
     <div>
-      <Head>
-        <title>Sign Up</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
       <div className="flex justify-center items-center h-screen bg-gray-100">
         <div className="w-full max-w-md">
           <form className="bg-white shadow-lg rounded p-8">
@@ -120,25 +115,5 @@ const SignUp = ({ ctx }: any) => {
     </div>
   );
 };
-
-// SignUp.getInitialProps = (ctx: any) => {
-//   const router = useRouter();
-//   const isAuthenticated = !!parseCookies(ctx).token;
-//   // When the user is authenticated, don't let the user visit the
-//   // sign-in and sign-up routes
-//   if (isAuthenticated && ["/sign-up", "/sign-in"].indexOf(ctx.asPath) > -1) {
-//     if (typeof window !== "undefined") {
-//       router.push("/");
-//     } else {
-//       if (ctx.res) {
-//         ctx.res.writeHead(301, {
-//           Location: "/",
-//         });
-//         ctx.res.end();
-//       }
-//     }
-//   }
-//   return {};
-// };
 
 export default SignUp;
