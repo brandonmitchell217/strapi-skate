@@ -4,7 +4,7 @@ import { base } from "@/lib/util";
 import Link from "next/link";
 
 interface MemberCardProps {
-  id: number;
+  id?: number;
   image: string | any;
   alt?: string;
   name: string | any;
@@ -21,10 +21,7 @@ export default function MemberCard({
   hometown,
 }: MemberCardProps) {
   return (
-    <div
-      key={id}
-      className="max-w-xs w-1/4 card card-compact bg-base-100 shadow-xl"
-    >
+    <div className="max-w-xs w-1/4 card card-compact bg-base-100 shadow-xl">
       <Link href={`/team/${id}`}>
         <Image
           src={`${base}${image}`}

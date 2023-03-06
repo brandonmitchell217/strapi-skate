@@ -2,6 +2,8 @@ import React from "react";
 import Cart from "@/components/Cart";
 import { useLocalStorage } from "usehooks-ts";
 
+// TODO: Find out what happened to quantity
+
 type ShoppingCartProviderProps = {
   children: React.ReactNode;
 };
