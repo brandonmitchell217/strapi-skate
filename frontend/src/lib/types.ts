@@ -16,6 +16,7 @@ export interface Props {
       category?: string;
       name?: string;
       hometown?: string;
+      stock?: number;
       age?: number;
       image?: {
         data: {

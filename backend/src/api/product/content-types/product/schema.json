@@ -33,6 +33,10 @@
     },
     "category": {
       "type": "string"
+    },
+    "stock": {
+      "type": "integer",
+      "default": 50
     }
   }
 }
