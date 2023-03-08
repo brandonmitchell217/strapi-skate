@@ -1,16 +1,39 @@
 import React from "react";
 import { fetchQuery } from "@/lib/util";
-import { ProductProps, Props } from "@/lib/types";
+import { DataProps } from "@/lib/types";
 import Image from "next/image";
 import { base } from "@/lib/util";
 import { useShoppingCart } from "@/context/ShoppingCart";
 
-export default function ItemPage({ product }: any) {
+interface PropTypes {
+  product: {
+    data: {
+      id: number;
+      attributes: {
+        id: number;
+        title: string;
+        image: {
+          data: {
+            attributes: {
+              url: string;
+            };
+          };
+        };
+        price: number;
+        category: string;
+      };
+    };
+  };
+}
+
+export default function ItemPage({ product }: PropTypes) {
   const { increaseCartQuantity } = useShoppingCart();
   const [quantity, setQuantity] = React.useState(1);
-  let id: number = product.data.id;
-  let title: string = product.data.attributes.title;
-  let imageUrl: string = product.data.attributes.image.data.attributes.url;
+  const id = product.data.id;
+  const title = product.data.attributes.title;
+  const imageUrl = product.data.attributes.image.data.attributes.url;
+  const price = product.data.attributes.price;
+  const category = product.data.attributes.category;
 
   // console.log(product);
 
@@ -19,7 +42,7 @@ export default function ItemPage({ product }: any) {
       <div className="max-w-6xl m-auto px-4 flex flex-col items-center justify-center sm:flex-row">
         <div className="">
           <Image
-            src={`${base}${product.data.attributes.image.data.attributes.url}`}
+            src={`${base}${imageUrl}`}
             alt="ifdimfds"
             width={500}
             height={500}
@@ -28,12 +51,10 @@ export default function ItemPage({ product }: any) {
         <div className="w-full sm:w-1/2 flex flex-col items-center justify-center gap-6 sm:items-stretch">
           <div className="prose lg:prose-xl">
             <div>
-              <h1>{product.data.attributes.title}</h1>
-              <p>${product.data.attributes.price}</p>
+              <h1>{title}</h1>
+              <p>${price}</p>
             </div>
-            {product.data.attributes.category === "deck" && (
-              <p>***grip not included</p>
-            )}
+            {category === "deck" && <p>***grip not included</p>}
           </div>
           <div className="flex gap-4">
             <form className="flex justify-center items-center">
@@ -63,13 +84,7 @@ export default function ItemPage({ product }: any) {
             <button
               className="btn btn-primary"
               onClick={() =>
-                increaseCartQuantity(
-                  id,
-                  title,
-                  imageUrl,
-                  quantity,
-                  product.data.attributes.price
-                )
+                increaseCartQuantity(id, title, imageUrl, quantity, price)
               }
             >
               Add to cart
@@ -93,7 +108,7 @@ export async function getStaticProps({ params }: any) {
 
 export async function getStaticPaths() {
   const products = await fetchQuery("products", "?populate=*");
-  const paths = products.data.map((product: any) => {
+  const paths = products.data.map((product: DataProps) => {
     return {
       params: { id: String(product.id) },
     };

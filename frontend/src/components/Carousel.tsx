@@ -13,21 +13,32 @@ export default function Carousel() {
   };
 
   return (
-    <div className="h-screen">
+    <div className="h-[550px]">
       <Swiper
         pagination={pagination}
         modules={[Pagination]}
         className="h-full w-full"
       >
-        <SwiperSlide className="">Slide 1</SwiperSlide>
-        <SwiperSlide className="">Slide 2</SwiperSlide>
-        <SwiperSlide className="">Slide 3</SwiperSlide>
-        <SwiperSlide className="">Slide 4</SwiperSlide>
-        <SwiperSlide className="">Slide 5</SwiperSlide>
-        <SwiperSlide className="">Slide 6</SwiperSlide>
-        <SwiperSlide className="">Slide 7</SwiperSlide>
-        <SwiperSlide className="">Slide 8</SwiperSlide>
-        <SwiperSlide className="">Slide 9</SwiperSlide>
+        <SwiperSlide className="bg-black text-white">
+          <div className="h-full flex justify-center items-center">
+            <h1 className="text-5xl">Slide 1</h1>
+          </div>
+        </SwiperSlide>
+        <SwiperSlide className="bg-black text-white">
+          <div className="h-full flex justify-center items-center">
+            <h1 className="text-5xl">Slide 2</h1>
+          </div>
+        </SwiperSlide>
+        <SwiperSlide className="bg-black text-white">
+          <div className="h-full flex justify-center items-center">
+            <h1 className="text-5xl">Slide 3</h1>
+          </div>
+        </SwiperSlide>
+        <SwiperSlide className="bg-black text-white">
+          <div className="h-full flex justify-center items-center">
+            <h1 className="text-5xl">Slide 4</h1>
+          </div>
+        </SwiperSlide>
       </Swiper>
     </div>
   );

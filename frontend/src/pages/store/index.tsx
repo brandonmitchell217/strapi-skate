@@ -5,11 +5,11 @@ import Layout from "@/layouts/Layout";
 import ProductCard from "@/components/ProductCard";
 
 export default function Store({ products }: ProductProps) {
-  const data = products.data.map((prod) => {
-    return prod.attributes;
-  });
+  // const data = products.data.map((prod) => {
+  //   return prod.attributes;
+  // });
 
-  console.log(products);
+  // console.log(products);
 
   return (
     <>

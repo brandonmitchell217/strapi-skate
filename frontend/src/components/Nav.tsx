@@ -19,7 +19,7 @@ export default function Nav() {
   };
 
   return (
-    <nav className="py-6 px-10 flex justify-between items-center relative">
+    <nav className="py-6 px-10 flex justify-between items-center fixed top-0 left-0 right-0 z-50 bg-base-100">
       <div>
         <Link href={"/"}>
           <h1 className="font-bold">Logo</h1>
