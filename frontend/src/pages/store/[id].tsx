@@ -63,7 +63,13 @@ export default function ItemPage({ product }: any) {
             <button
               className="btn btn-primary"
               onClick={() =>
-                increaseCartQuantity(id, title, imageUrl, quantity)
+                increaseCartQuantity(
+                  id,
+                  title,
+                  imageUrl,
+                  quantity,
+                  product.data.attributes.price
+                )
               }
             >
               Add to cart

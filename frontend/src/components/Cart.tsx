@@ -29,18 +29,19 @@ export default function Cart({ isOpen }: CartProps) {
             quantity={item.quantity}
             title={item.title}
             image={item.image}
+            price={item.price}
           />
         ))}
       </div>
-      {/* <div className="ms-auto fw-bold fs-5">
-            Total{" "}
-            {formatCurrency(
-              cartItems.reduce((total, cartItem) => {
-                const item = cartItems.find((i) => i.id === cartItem.id);
-                return total + (item?.price || 0) * cartItem.quantity;
-              }, 0)
-            )}
-          </div> */}
+      <div className="ms-auto fw-bold fs-5 absolute bottom-4 left-4">
+        Total{" "}
+        {formatCurrency(
+          cartItems.reduce((total, cartItem) => {
+            const item = cartItems.find((i) => i.id === cartItem.id);
+            return total + (item?.price || 0) * cartItem.quantity;
+          }, 0)
+        )}
+      </div>
     </div>
   );
 }

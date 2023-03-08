@@ -53,7 +53,9 @@ export default function ProductCard({
         <p>${price}</p>
         <span className="block text-[12px]">{category?.toLowerCase()}</span>
         <button
-          onClick={() => increaseCartQuantity(id, title, image, 1)}
+          onClick={() =>
+            increaseCartQuantity(id, title, image, 1, price ? price : 0)
+          }
           className={`btn btn-primary`}
         >
           {quantity > 0 ? "Add another" : "Add to cart"}

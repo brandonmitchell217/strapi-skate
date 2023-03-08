@@ -8,6 +8,7 @@ interface CartItemProps {
   quantity: number;
   title: string;
   image: string;
+  price: number;
 }
 
 export default function CartItem({
@@ -15,6 +16,7 @@ export default function CartItem({
   quantity,
   title,
   image,
+  price,
 }: CartItemProps) {
   const { removeFromCart } = useShoppingCart();
 
@@ -31,6 +33,7 @@ export default function CartItem({
       <div className="flex items-center gap-4">
         <h4>{title}</h4>
         <span className="font-light text-sm">x{quantity}</span>
+        <span className="font-light text-xs">${price}</span>
       </div>
       <button
         className="p-1 cursor-pointer border ml-8 rounded-full text-warning border-warning"

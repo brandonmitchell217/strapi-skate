@@ -11,6 +11,7 @@ type CartItem = {
   quantity: number;
   title: string;
   image: string;
+  price: number;
 };
 
 type ShoppingCartContextProps = {
@@ -21,7 +22,8 @@ type ShoppingCartContextProps = {
     id: number,
     title: string,
     image: string,
-    quantity: number
+    quantity: number,
+    price: number
   ) => void;
   removeFromCart: (id: number) => void;
   cartQuantity: number;
@@ -56,20 +58,21 @@ export default function ShoppingCartProvider({
     id: number,
     title: string,
     image: string,
-    quantity: number
+    quantity: number,
+    price: number
   ) {
     setCartItems((currItems) => {
       const existingItem = currItems.find((item) => item.id === id);
       if (existingItem) {
         return currItems.map((item) => {
           if (item.id === id) {
-            return { ...item, quantity: item.quantity + quantity };
+            return { ...item, quantity: item.quantity + quantity, price };
           } else {
             return item;
           }
         });
       } else {
-        return [...currItems, { id, quantity, title, image }];
+        return [...currItems, { id, quantity, title, image, price }];
       }
     });
   }
