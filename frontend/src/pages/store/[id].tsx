@@ -7,7 +7,7 @@ import { useShoppingCart } from "@/context/ShoppingCart";
 
 export default function ItemPage({ product }: any) {
   const { increaseCartQuantity } = useShoppingCart();
-  const [quantity, setQuantity] = React.useState(0);
+  const [quantity, setQuantity] = React.useState(1);
   let id: number = product.data.id;
   let title: string = product.data.attributes.title;
   let imageUrl: string = product.data.attributes.image.data.attributes.url;
@@ -50,7 +50,7 @@ export default function ItemPage({ product }: any) {
                 type="number"
                 name="quantity"
                 id="quantity"
-                min={0}
+                min={1}
                 value={quantity}
               />
               <div
