@@ -24,6 +24,17 @@ export default function ProductCard({
   const { increaseCartQuantity, getItemQuantity } = useShoppingCart();
   const quantity = getItemQuantity(id);
 
+  const fields = {
+    id,
+    image,
+    alt,
+    title,
+    price,
+    category,
+  };
+
+  console.log(fields);
+
   return (
     <div className="card card-compact w-full xl:w-80 bg-base-100 shadow-xl">
       <Link href={`/store/${id}`} className="group">

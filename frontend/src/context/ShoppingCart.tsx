@@ -2,8 +2,6 @@ import React from "react";
 import Cart from "@/components/Cart";
 import { useLocalStorage } from "usehooks-ts";
 
-// TODO: Find out what happened to quantity
-
 type ShoppingCartProviderProps = {
   children: React.ReactNode;
 };
@@ -54,21 +52,6 @@ export default function ShoppingCartProvider({
     return cartItems.find((item) => item.id === id)?.quantity || 0;
   }
 
-  // function increaseCartQuantity(id: number, title: string, image: string) {
-  //   setCartItems((currItems) => {
-  //     if (currItems.find((item) => item.id === id) == null) {
-  //       return [...currItems, { id, quantity: 1, title, image }];
-  //     } else {
-  //       return currItems.map((item) => {
-  //         if (item.id === id) {
-  //           return { ...item, quantity: item.quantity + 1, title, image };
-  //         } else {
-  //           return item;
-  //         }
-  //       });
-  //     }
-  //   });
-  // }
   function increaseCartQuantity(
     id: number,
     title: string,
