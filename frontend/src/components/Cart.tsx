@@ -13,8 +13,8 @@ export default function Cart({ isOpen }: CartProps) {
   // console.log(cartItems);
   return (
     <div
-      className={`absolute z-50 top-0 h-full bg-secondary text-base-100 right-0 ${
-        isOpen ? "w-96" : "w-0"
+      className={`fixed z-50 top-0 h-full min-w-[300px] bg-secondary text-base-100 ${
+        isOpen ? "visible right-0" : "hidden -right-full"
       }`}
     >
       <div className="inline-block p-1 cursor-pointer" onClick={closeCart}>

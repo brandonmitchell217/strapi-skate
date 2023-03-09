@@ -3,6 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper";
+import Image from "next/image";
 
 export default function Carousel() {
   const pagination = {
@@ -13,15 +14,23 @@ export default function Carousel() {
   };
 
   return (
-    <div className="h-[550px]">
+    <div className="h-[260px] sm:h-[300px] md:h-[375px] lg:h-[550px]">
       <Swiper
         pagination={pagination}
         modules={[Pagination]}
         className="h-full w-full"
       >
         <SwiperSlide className="bg-black text-white">
-          <div className="h-full flex justify-center items-center">
-            <h1 className="text-5xl">Slide 1</h1>
+          <div className="h-full flex justify-end items-center relative">
+            <Image src={"/slide1.jpg"} alt="potatoes" fill={true} />
+            <div className="relative z-10 w-1/2 flex justify-center">
+              <div className="space-y-12 text-center">
+                <h1 className="text-5xl">Slide 1</h1>
+                <a href="/" className="btn btn-primary">
+                  A link
+                </a>
+              </div>
+            </div>
           </div>
         </SwiperSlide>
         <SwiperSlide className="bg-black text-white">

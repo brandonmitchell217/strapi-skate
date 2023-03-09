@@ -33,7 +33,7 @@ export default function ProductCard({
     category,
   };
 
-  console.log(fields);
+  // console.log(fields);
 
   return (
     <div className="card card-compact w-full xl:w-80 bg-base-100 shadow-xl">

@@ -6,6 +6,7 @@ import Layout from "@/layouts/Layout";
 import ProductCard from "@/components/ProductCard";
 import { Props, RestaurantProps, pagination, ProductProps } from "@/lib/types";
 import Carousel from "@/components/Carousel";
+import ProductInterstitialLayout from "@/layouts/ProductInterstitial";
 
 export default function Home({ products }: ProductProps) {
   const data = products.data.map((product) => {
@@ -13,8 +14,8 @@ export default function Home({ products }: ProductProps) {
   });
 
   // console.log(products);
-  {
-    /* {products.data.map((product) => (
+
+  /* {products.data.map((product) => (
             <ProductCard
               key={product.id}
               id={product.id}
@@ -24,46 +25,40 @@ export default function Home({ products }: ProductProps) {
               category={product.attributes.category}
             />
           ))} */
-  }
 
   return (
     <section className="pt-24">
       <Carousel />
-      <div className="py-24">
-        <h2 className="font-bold text-3xl">Decks</h2>
-        <div className="p-5 grid grid-cols-1 md:grid-cols-2 md:grid-rows-2 xl:grid-cols-4 xl:grid-rows-1 place-items-center gap-6">
-          {products.data
-            .filter((product) => product.attributes.category === "deck")
-            .map((product) => (
-              <ProductCard
-                key={product.id}
-                id={product.id}
-                image={product?.attributes?.image?.data.attributes.url}
-                title={product.attributes.title}
-                price={product.attributes.price}
-                category={product.attributes.category}
-              />
-            ))}
-        </div>
-      </div>
-      <div className="bg-red-600 h-[425px] w-full"></div>
-      <div className="py-24">
-        <h2 className="font-bold text-3xl">Shoes</h2>
-        <div className="p-5 grid grid-cols-1 md:grid-cols-2 md:grid-rows-2 xl:grid-cols-4 xl:grid-rows-1 place-items-center gap-6">
-          {products.data
-            .filter((product) => product.attributes.category === "shoes")
-            .map((product) => (
-              <ProductCard
-                key={product.id}
-                id={product.id}
-                image={product?.attributes?.image?.data.attributes.url}
-                title={product.attributes.title}
-                price={product.attributes.price}
-                category={product.attributes.category}
-              />
-            ))}
-        </div>
-      </div>
+
+      <ProductInterstitialLayout title="Decks">
+        {products.data
+          .filter((product) => product.attributes.category === "deck")
+          .map((product) => (
+            <ProductCard
+              key={product.id}
+              id={product.id}
+              image={product?.attributes?.image?.data.attributes.url}
+              title={product.attributes.title}
+              price={product.attributes.price}
+              category={product.attributes.category}
+            />
+          ))}
+      </ProductInterstitialLayout>
+      <div className="bg-red-600 h-[260px] lg:h-[550px] w-full"></div>
+      <ProductInterstitialLayout title="Shoes">
+        {products.data
+          .filter((product) => product.attributes.category === "shoes")
+          .map((product) => (
+            <ProductCard
+              key={product.id}
+              id={product.id}
+              image={product?.attributes?.image?.data.attributes.url}
+              title={product.attributes.title}
+              price={product.attributes.price}
+              category={product.attributes.category}
+            />
+          ))}
+      </ProductInterstitialLayout>
     </section>
   );
 }

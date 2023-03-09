@@ -21,7 +21,7 @@ export default function MemberCard({
   hometown,
 }: MemberCardProps) {
   return (
-    <div className="max-w-xs w-1/4 card card-compact bg-base-100 shadow-xl">
+    <div className="card card-compact bg-base-100 shadow-xl">
       <Link href={`/team/${id}`}>
         <Image
           src={`${base}${image}`}
