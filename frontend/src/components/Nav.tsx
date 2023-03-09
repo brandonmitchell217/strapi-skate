@@ -13,11 +13,6 @@ export default function Nav() {
   const { user, signOut } = useAuth();
   const [logSign, setLogSign] = React.useState(false);
 
-  const handleSignOut = () => {
-    signOut();
-    router.push("/sign-in");
-  };
-
   return (
     <nav className="py-6 px-10 flex justify-between items-center fixed top-0 left-0 right-0 z-50 bg-base-100">
       <div>
@@ -46,7 +41,7 @@ export default function Nav() {
               <button
                 className="btn btn-primary"
                 onClick={() => {
-                  user ? handleSignOut() : router.push("/sign-in");
+                  user ? signOut() : router.push("/sign-in");
                 }}
               >
                 {user ? "Log Out" : "Log In"}
