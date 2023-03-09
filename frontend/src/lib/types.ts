@@ -4,68 +4,51 @@ export interface pagination {
   pageCount: number;
   total: number;
 }
+export interface AttributesProps {
+  key?: string | number;
+  title: string;
+  location?: string;
+  description?: string;
+  category?: string;
+  name?: string;
+  hometown?: string;
+  stock?: number;
+  age?: number;
+  image?: {
+    data: {
+      attributes: {
+        formats: {
+          thumbnail: {
+            url: string;
+          };
+        };
+        url: string;
+      };
+    };
+  };
+  price?: number;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+}
 
 export interface DataProps {
   id: number;
-  attributes: {
-    key?: string | number;
-    title: string;
-    location?: string;
-    description?: string;
-    category?: string;
-    name?: string;
-    hometown?: string;
-    stock?: number;
-    age?: number;
-    image?: {
-      data: {
-        attributes: {
-          formats: {
-            thumbnail: {
-              url: string;
-            };
-          };
-          url: string;
-        };
-      };
-    };
-    price?: number;
-    createdAt: string;
-    updatedAt: string;
-    publishedAt: string;
+  attributes: AttributesProps;
+}
+
+export interface SingleProps {
+  data: {
+    id: number;
+    attributes: AttributesProps;
   };
+  meta: { pagination: pagination };
 }
 
 export interface Props {
   data: {
     id: number;
-    attributes: {
-      key?: string | number;
-      title: string;
-      location?: string;
-      description?: string;
-      category?: string;
-      name?: string;
-      hometown?: string;
-      stock?: number;
-      age?: number;
-      image?: {
-        data: {
-          attributes: {
-            formats: {
-              thumbnail: {
-                url: string;
-              };
-            };
-            url: string;
-          };
-        };
-      };
-      price?: number;
-      createdAt: string;
-      updatedAt: string;
-      publishedAt: string;
-    };
+    attributes: AttributesProps;
   }[];
   meta: { pagination: pagination };
 }
@@ -73,8 +56,11 @@ export interface Props {
 export interface RestaurantProps {
   restaurants: Props;
 }
-export interface ProductProps {
+export interface ProductsProps {
   products: Props;
+}
+export interface ProductProps {
+  product: SingleProps;
 }
 
 export interface TeamMembersProps {

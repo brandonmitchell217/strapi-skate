@@ -5,15 +5,17 @@ import { TeamMembersProps, Props } from "../../lib/types";
 import Image from "next/image";
 
 export default function ItemPage({ member }: any) {
-  console.log(member);
+  // console.log(member);
   return (
-    <>
+    <section className="pt-24">
       <div className="max-w-4xl m-auto card lg:card-side bg-base-100 shadow-xl rounded-2xl">
         <Image
           src={`${base}${member.data.attributes.image.data.attributes.url}`}
           alt="dadfadfa dfa"
           width={350}
           height={350}
+          placeholder="blur"
+          blurDataURL={`${base}${member.data.attributes.image.data.attributes.url}`}
           className="rounded-tl-2xl rounded-bl-2xl"
         />
         <div className="card-body">
@@ -21,7 +23,7 @@ export default function ItemPage({ member }: any) {
           <p>{member.data.attributes.hometown}</p>
         </div>
       </div>
-    </>
+    </section>
   );
 }
 

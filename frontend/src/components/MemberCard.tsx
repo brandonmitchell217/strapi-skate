@@ -28,6 +28,8 @@ export default function MemberCard({
           alt={alt ?? "image of skater"}
           width={300}
           height={300}
+          placeholder="blur"
+          blurDataURL={`${base}${image}`}
         />
         <div className="card-body">
           <h1 className="card-title">

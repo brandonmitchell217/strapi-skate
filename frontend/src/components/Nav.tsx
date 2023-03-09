@@ -64,7 +64,7 @@ export default function Nav() {
           <li className="relative cursor-pointer" onClick={openCart}>
             <IoCart size={28} />
             <div className="bg-red-600 rounded-full h-4 w-4 absolute z-10 bottom-0 right-0 text-white text-[10px] flex justify-center items-center">
-              {cartQuantity < 0 ? 0 : cartQuantity}
+              {cartQuantity < 1 ? 0 : cartQuantity}
             </div>
           </li>
         </ul>

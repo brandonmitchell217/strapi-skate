@@ -43,8 +43,8 @@ function SignIn() {
   };
 
   return (
-    <div>
-      <form className={`p-6 h-full w-full flex flex-col gap-4`}>
+    <section className="pt-24">
+      <form className={`p-6 h-full max-w-4xl m-auto flex flex-col gap-4`}>
         <label className="text-gray-600 font-medium">Email</label>
         <input
           type="email"
@@ -67,7 +67,7 @@ function SignIn() {
           Log In
         </button>
       </form>
-    </div>
+    </section>
   );
 }
 

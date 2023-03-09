@@ -42,7 +42,7 @@ const SignUp = ({ ctx }: any) => {
   }
 
   return (
-    <div>
+    <section>
       <div className="flex justify-center items-center h-screen bg-gray-100">
         <div className="w-full max-w-md">
           <form className="bg-white shadow-lg rounded p-8">
@@ -112,7 +112,7 @@ const SignUp = ({ ctx }: any) => {
           </form>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

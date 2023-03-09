@@ -4,11 +4,11 @@ import { GetStaticProps, InferGetStaticPropsType } from "next";
 import { fetchQuery } from "@/lib/util";
 import Layout from "@/layouts/Layout";
 import ProductCard from "@/components/ProductCard";
-import { Props, RestaurantProps, pagination, ProductProps } from "@/lib/types";
+import { Props, RestaurantProps, pagination, ProductsProps } from "@/lib/types";
 import Carousel from "@/components/Carousel";
 import ProductInterstitialLayout from "@/layouts/ProductInterstitial";
 
-export default function Home({ products }: ProductProps) {
+export default function Home({ products }: ProductsProps) {
   const data = products.data.map((product) => {
     return product.attributes;
   });
@@ -44,7 +44,7 @@ export default function Home({ products }: ProductProps) {
             />
           ))}
       </ProductInterstitialLayout>
-      <div className="bg-red-600 h-[260px] lg:h-[550px] w-full"></div>
+      <div className="bg-red-600 h-[260px] sm:h-[300px] md:h-[375px] lg:h-[450px] w-full"></div>
       <ProductInterstitialLayout title="Shoes">
         {products.data
           .filter((product) => product.attributes.category === "shoes")
@@ -59,6 +59,7 @@ export default function Home({ products }: ProductProps) {
             />
           ))}
       </ProductInterstitialLayout>
+      <div className="bg-red-600 h-[260px] sm:h-[300px] md:h-[375px] lg:h-[450px] w-full"></div>
     </section>
   );
 }

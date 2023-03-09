@@ -31,6 +31,7 @@ export default function Team({ teamMembers }: TeamMembersProps) {
     <ProductInterstitialLayout title="Team">
       {teamMembers.data.map((member) => (
         <MemberCard
+          key={member.id}
           id={member.id}
           image={member.attributes.image?.data.attributes.url}
           name={member.attributes.name}
