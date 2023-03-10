@@ -6,6 +6,7 @@ import React from "react";
 import Image from "next/image";
 import MemberCard from "@/components/MemberCard";
 import ProductInterstitialLayout from "@/layouts/ProductInterstitial";
+import VideoCarousel from "@/components/Carousel-video";
 
 export default function Team({ teamMembers }: TeamMembersProps) {
   //   const data = teamMembers.data.map((member) => {
@@ -28,18 +29,21 @@ export default function Team({ teamMembers }: TeamMembersProps) {
     //     ))}
     //   </div>
     // </section>
-    <ProductInterstitialLayout title="Team">
-      {teamMembers.data.map((member) => (
-        <MemberCard
-          key={member.id}
-          id={member.id}
-          image={member.attributes.image?.data.attributes.url}
-          name={member.attributes.name}
-          age={member.attributes.age}
-          hometown={member.attributes.hometown}
-        />
-      ))}
-    </ProductInterstitialLayout>
+    <>
+      <ProductInterstitialLayout title="Team">
+        {teamMembers.data.map((member) => (
+          <MemberCard
+            key={member.id}
+            id={member.id}
+            image={member.attributes.image?.data.attributes.url}
+            name={member.attributes.name}
+            age={member.attributes.age}
+            hometown={member.attributes.hometown}
+          />
+        ))}
+      </ProductInterstitialLayout>
+      <VideoCarousel />
+    </>
   );
 }
 
