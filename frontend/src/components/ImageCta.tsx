@@ -25,7 +25,7 @@ export default function ImageCta({
 }: ImageCtaProps) {
   return (
     <div
-      className={`relative h-[260px] sm:h-[300px] md:h-[375px] lg:h-[450px] w-full ${className}`}
+      className={`relative h-[260px] sm:h-[300px] md:h-[375px] lg:h-[405px] xl:h-[450px] w-full ${className}`}
     >
       <Image
         src={image}
@@ -34,7 +34,7 @@ export default function ImageCta({
         blurDataURL={image}
         placeholder="blur"
         priority
-        className="-z-10"
+        className="-z-10 object-fill"
       />
       <div className={`${contentClassName}`}>
         <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white">

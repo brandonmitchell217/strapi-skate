@@ -1,33 +1,32 @@
-// use client
 import React from "react";
-import ReactPlayer from "react-player";
-
-import { useWindowSize } from "usehooks-ts";
+import dynamic from "next/dynamic";
+const ReactPlayer = dynamic(() => import("react-player"), { ssr: false });
+const useWindowSize = process.browser && require("usehooks-ts").useWindowSize;
 
 const breakpoints = [640, 768, 1024, 1280, 1536];
 
-const videos = [
-  { feature: true, url: "https://www.youtube.com/watch?v=N3s18dPCuVw" },
-  { feature: false, url: "https://www.youtube.com/watch?v=N3s18dPCuVw" },
-  { feature: false, url: "https://www.youtube.com/watch?v=N3s18dPCuVw" },
-  { feature: false, url: "https://www.youtube.com/watch?v=N3s18dPCuVw" },
-  { feature: false, url: "https://www.youtube.com/watch?v=N3s18dPCuVw" },
-];
-
 export default function VideoCarousel() {
-  const { width } = useWindowSize();
-  const [mainSize, setMainSize] = React.useState(String);
-  const [thumbSize, setThumbSize] = React.useState(String);
+  const { width } = useWindowSize ? useWindowSize() : { width: undefined };
+  const [mainSize, setMainSize] = React.useState("500px");
+  const [thumbSize, setThumbSize] = React.useState("150px");
 
   React.useEffect(() => {
-    if (width < breakpoints[1]) {
+    if (width && width < breakpoints[1]) {
       setMainSize("300px");
       setThumbSize("90px");
-    } else if (width > breakpoints[2]) {
+    } else if (width && width > breakpoints[2]) {
       setMainSize("500px");
       setThumbSize("150px");
     }
-  }, [width, mainSize, thumbSize]);
+  }, [width]);
+
+  const videos = [
+    { feature: true, url: "https://www.youtube.com/watch?v=N3s18dPCuVw" },
+    { feature: false, url: "https://www.youtube.com/watch?v=N3s18dPCuVw" },
+    { feature: false, url: "https://www.youtube.com/watch?v=N3s18dPCuVw" },
+    { feature: false, url: "https://www.youtube.com/watch?v=N3s18dPCuVw" },
+    { feature: false, url: "https://www.youtube.com/watch?v=N3s18dPCuVw" },
+  ];
 
   return (
     <div className="max-w-6xl w-full m-auto py-8 sm:py-16 px-1 sm:px-0">
@@ -36,14 +35,19 @@ export default function VideoCarousel() {
           {videos
             .filter((video) => video.feature === true)
             .map((video) => (
-              <ReactPlayer url={video.url} height={mainSize} width={"100%"} />
+              <ReactPlayer
+                key={video.url}
+                url={video.url}
+                height={mainSize}
+                width={"100%"}
+              />
             ))}
         </div>
         <div className="w-full h-28 grid grid-cols-4 gap-2">
           {videos
             .filter((video) => video.feature === false)
-            .map((video) => (
-              <div>
+            .map((video, i) => (
+              <div key={i}>
                 <ReactPlayer
                   url={video.url}
                   height={thumbSize}
