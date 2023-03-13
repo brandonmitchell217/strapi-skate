@@ -9,6 +9,7 @@ import ProductInterstitialLayout from "@/layouts/ProductInterstitial";
 import VideoCarousel from "@/components/Carousel-video";
 import ThumbGallery from "../../components/CarouselVideo";
 
+// TODO: Need to fix video Carousel, hydration error
 export default function Team({ teamMembers }: TeamMembersProps) {
   //   const data = teamMembers.data.map((member) => {
   //     return member.attributes;
