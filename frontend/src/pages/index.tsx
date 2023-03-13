@@ -7,6 +7,7 @@ import ProductCard from "@/components/ProductCard";
 import { Props, RestaurantProps, pagination, ProductsProps } from "@/lib/types";
 import Carousel from "@/components/Carousel";
 import ProductInterstitialLayout from "@/layouts/ProductInterstitial";
+import ImageCta from "@/components/ImageCta";
 
 export default function Home({ products }: ProductsProps) {
   const data = products.data.map((product) => {
@@ -44,7 +45,17 @@ export default function Home({ products }: ProductsProps) {
             />
           ))}
       </ProductInterstitialLayout>
-      <div className="bg-red-600 h-[260px] sm:h-[300px] md:h-[375px] lg:h-[450px] w-full"></div>
+      {/* <div className="bg-red-600 h-[260px] sm:h-[300px] md:h-[375px] lg:h-[450px] w-full"></div> */}
+      <ImageCta
+        image="/slide2.jpg"
+        alt="skater dude"
+        title="title"
+        subtitle="subtitle"
+        link="https://google.com"
+        linkText="link text"
+        className="justify-end flex"
+        contentClassName="flex justify-center items-start gap-4 flex-col h-full w-3/4 m-auto"
+      />
       <ProductInterstitialLayout title="Shoes">
         {products.data
           .filter((product) => product.attributes.category === "shoes")
@@ -59,7 +70,17 @@ export default function Home({ products }: ProductsProps) {
             />
           ))}
       </ProductInterstitialLayout>
-      <div className="bg-red-600 h-[260px] sm:h-[300px] md:h-[375px] lg:h-[450px] w-full"></div>
+      {/* <div className="bg-red-600 h-[260px] sm:h-[300px] md:h-[375px] lg:h-[450px] w-full"></div> */}
+      <ImageCta
+        image="/slide1.jpg"
+        alt="skater dude"
+        title="title"
+        subtitle="subtitle"
+        link="https://google.com"
+        linkText="link text"
+        className="justify-end flex"
+        contentClassName="flex justify-center items-center gap-4 flex-col h-full w-full lg:w-1/2"
+      />
     </section>
   );
 }

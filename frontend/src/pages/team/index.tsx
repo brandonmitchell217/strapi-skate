@@ -7,6 +7,7 @@ import Image from "next/image";
 import MemberCard from "@/components/MemberCard";
 import ProductInterstitialLayout from "@/layouts/ProductInterstitial";
 import VideoCarousel from "@/components/Carousel-video";
+import ThumbGallery from "../../components/CarouselVideo";
 
 export default function Team({ teamMembers }: TeamMembersProps) {
   //   const data = teamMembers.data.map((member) => {
@@ -42,7 +43,8 @@ export default function Team({ teamMembers }: TeamMembersProps) {
           />
         ))}
       </ProductInterstitialLayout>
-      <VideoCarousel />
+      {/* <VideoCarousel /> */}
+      {/* <ThumbGallery /> */}
     </>
   );
 }
