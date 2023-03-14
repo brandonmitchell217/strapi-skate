@@ -1,0 +1,40 @@
+{
+  "kind": "collectionType",
+  "collectionName": "interstitial_images",
+  "info": {
+    "singularName": "interstitial-image",
+    "pluralName": "interstitial-images",
+    "displayName": "interstitial image"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "header": {
+      "type": "string"
+    },
+    "subheader": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "bg": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "button_link": {
+      "type": "string"
+    },
+    "button_text": {
+      "type": "string"
+    }
+  }
+}

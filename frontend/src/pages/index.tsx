@@ -1,35 +1,26 @@
-import Head from "next/head";
-import Image from "next/image";
-import { GetStaticProps, InferGetStaticPropsType } from "next";
 import { fetchQuery } from "@/lib/util";
-import Layout from "@/layouts/Layout";
 import ProductCard from "@/components/ProductCard";
-import { Props, RestaurantProps, pagination, ProductsProps } from "@/lib/types";
+import { ProductsProps, Props } from "@/lib/types";
 import Carousel from "@/components/Carousel";
 import ProductInterstitialLayout from "@/layouts/ProductInterstitial";
 import ImageCta from "@/components/ImageCta";
+import { base } from "@/lib/util";
 
-export default function Home({ products }: ProductsProps) {
+interface HomeProps {
+  products: Props;
+  images: any;
+}
+
+export default function Home({ products, images }: HomeProps) {
   const data = products.data.map((product) => {
     return product.attributes;
   });
-
+  console.log(images);
   // console.log(products);
-
-  /* {products.data.map((product) => (
-            <ProductCard
-              key={product.id}
-              id={product.id}
-              image={product?.attributes?.image?.data.attributes.url}
-              title={product.attributes.title}
-              price={product.attributes.price}
-              category={product.attributes.category}
-            />
-          ))} */
 
   return (
     <section className="pt-24">
-      <Carousel />
+      <Carousel image1={images.data[0].attributes.bg.data.attributes.url} />
 
       <ProductInterstitialLayout title="Decks">
         {products.data
@@ -45,9 +36,9 @@ export default function Home({ products }: ProductsProps) {
             />
           ))}
       </ProductInterstitialLayout>
-      {/* <div className="bg-red-600 h-[260px] sm:h-[300px] md:h-[375px] lg:h-[450px] w-full"></div> */}
+
       <ImageCta
-        image="/slide2.jpg"
+        image={base + images.data[1].attributes.bg.data.attributes.url}
         alt="skater dude"
         title="title"
         subtitle="subtitle"
@@ -70,9 +61,9 @@ export default function Home({ products }: ProductsProps) {
             />
           ))}
       </ProductInterstitialLayout>
-      {/* <div className="bg-red-600 h-[260px] sm:h-[300px] md:h-[375px] lg:h-[450px] w-full"></div> */}
+
       <ImageCta
-        image="/slide1.jpg"
+        image={base + images.data[0].attributes.bg.data.attributes.url}
         alt="skater dude"
         title="title"
         subtitle="subtitle"
@@ -87,10 +78,12 @@ export default function Home({ products }: ProductsProps) {
 
 export async function getStaticProps() {
   const products = await fetchQuery("products", "?populate=*");
+  const images = await fetchQuery("interstitial-images", "?populate=*");
 
   return {
     props: {
       products,
+      images,
     },
   };
 }

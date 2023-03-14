@@ -4,8 +4,22 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper";
 import Image from "next/image";
+import { base } from "@/lib/util";
+import Link from "next/link";
 
-export default function Carousel() {
+interface CarouselProps {
+  image1: string;
+  image2?: string;
+  image3?: string;
+  image4?: string;
+}
+
+export default function Carousel({
+  image1,
+  image2,
+  image3,
+  image4,
+}: CarouselProps) {
   const pagination = {
     clickable: true,
     renderBullet: function (index: number, className: string) {
@@ -22,13 +36,13 @@ export default function Carousel() {
       >
         <SwiperSlide className="bg-black text-white">
           <div className="h-full flex justify-end items-center relative">
-            <Image src={"/slide1.jpg"} alt="potatoes" fill={true} />
+            <Image src={base + image1} alt="potatoes" fill={true} />
             <div className="relative z-10 w-1/2 flex justify-center">
               <div className="space-y-12 text-center">
                 <h1 className="text-5xl">Slide 1</h1>
-                <a href="/" className="btn btn-primary">
+                <Link href="/" className="btn btn-primary">
                   A link
-                </a>
+                </Link>
               </div>
             </div>
           </div>
