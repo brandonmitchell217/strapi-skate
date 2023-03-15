@@ -8,21 +8,26 @@ import { base } from "@/lib/util";
 
 interface HomeProps {
   products: Props;
-  images: Props;
+  interstitialImages: Props;
+  heroSliders: Props;
 }
 
-export default function Home({ products, images }: HomeProps) {
-  const data = images.data.map((image) => {
-    return image.attributes;
-  });
+export default function Home({
+  products,
+  interstitialImages,
+  heroSliders,
+}: HomeProps) {
+  // const data = images.data.map((image) => {
+  //   return image.attributes;
+  // });
   // console.log(images);
-  // console.log(products);
+  // console.log(heroSliders);
 
   return (
     <section className="pt-24">
       <Carousel
-        image1={images.data[0].attributes.bg?.data?.attributes.url}
-        image2={images.data[1].attributes.bg?.data?.attributes.url}
+        slide1={heroSliders.data[0].attributes}
+        slide2={heroSliders.data[1].attributes}
       />
 
       <ProductInterstitialLayout title="Decks">
@@ -41,7 +46,9 @@ export default function Home({ products, images }: HomeProps) {
       </ProductInterstitialLayout>
 
       <ImageCta
-        image={base + images.data[1].attributes.bg?.data?.attributes.url}
+        image={
+          base + interstitialImages.data[1].attributes.bg?.data?.attributes.url
+        }
         alt="skater dude"
         title="title"
         subtitle="subtitle"
@@ -66,7 +73,9 @@ export default function Home({ products, images }: HomeProps) {
       </ProductInterstitialLayout>
 
       <ImageCta
-        image={base + images.data[0].attributes.bg?.data?.attributes.url}
+        image={
+          base + interstitialImages.data[0].attributes.bg?.data?.attributes.url
+        }
         alt="skater dude"
         title="title"
         subtitle="subtitle"
@@ -81,12 +90,17 @@ export default function Home({ products, images }: HomeProps) {
 
 export async function getStaticProps() {
   const products = await fetchQuery("products", "?populate=*");
-  const images = await fetchQuery("interstitial-images", "?populate=*");
+  const interstitialImages = await fetchQuery(
+    "interstitial-images",
+    "?populate=*"
+  );
+  const heroSliders = await fetchQuery("hero-sliders", "?populate=*");
 
   return {
     props: {
       products,
-      images,
+      interstitialImages,
+      heroSliders,
     },
   };
 }

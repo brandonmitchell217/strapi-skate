@@ -30,6 +30,12 @@ export interface ImageProps {
 export interface AttributesProps {
   key?: string | number;
   title: string;
+  subtitle?: string;
+  header?: string;
+  link1?: string;
+  link2?: string;
+  link1Text?: string;
+  link2Text?: string;
   location?: string;
   description?: string;
   category?: string;

@@ -6,24 +6,63 @@ import { Pagination } from "swiper";
 import Image from "next/image";
 import { base } from "@/lib/util";
 import Link from "next/link";
-import { Props } from "@/lib/types";
+import { Props, ImageProps } from "@/lib/types";
 
 interface CarouselProps {
-  image1?: string | any;
-  image2?: string | any;
-  image3?: string | any;
-  image4?: string | any;
-  images?: Props[];
+  images?: {
+    image1?: string | any;
+    image2?: string | any;
+    image3?: string | any;
+    image4?: string | any;
+  };
+  slide1?: {
+    bg?: ImageProps;
+    image?: any;
+    header?: any;
+    subtitle?: string;
+    link1?: any;
+    link1_text?: string;
+    link2?: string;
+    link2_text?: string;
+  };
+  slide2?: {
+    bg?: ImageProps;
+    image?: any;
+    header?: any;
+    subtitle?: string;
+    link1?: any;
+    link1_text?: string;
+    link2?: string;
+    link2_text?: string;
+  };
+  slide3?: {
+    bg?: ImageProps;
+    image?: any;
+    header?: any;
+    subtitle?: string;
+    link1?: any;
+    link1_text?: string;
+    link2?: string;
+    link2_text?: string;
+  };
+  slide4?: {
+    bg?: ImageProps;
+    image?: any;
+    header?: any;
+    subtitle?: string;
+    link1?: any;
+    link1_text?: string;
+    link2?: string;
+    link2_text?: string;
+  };
   props?: any;
 }
 
 export default function Carousel({
-  image1,
-  image2,
-  image3,
-  image4,
-  images = [],
-  props,
+  slide1,
+  slide2,
+  slide3,
+  slide4,
 }: CarouselProps) {
   const pagination = {
     clickable: true,
@@ -32,13 +71,16 @@ export default function Carousel({
     },
   };
 
-  console.log(props);
+  const slides = [slide1, slide2];
+
+  console.log(slides);
 
   const Slide = (
     image: any,
     title: string,
+    subtitle: any,
     link: string,
-    button_text?: string
+    link_text?: string
   ) => {
     return (
       <div className="h-full flex justify-end items-center relative">
@@ -46,8 +88,9 @@ export default function Carousel({
         <div className="relative z-10 w-1/2 flex justify-center">
           <div className="space-y-12 text-center">
             <h2 className="text-5xl">{title}</h2>
+            {subtitle && <p className="text-sm text-gray-300">{subtitle}</p>}
             <Link href={link} className="btn btn-primary">
-              {button_text ? button_text : "Check It Out"}
+              {link_text ? link_text : "Check it out"}
             </Link>
           </div>
         </div>
@@ -62,22 +105,19 @@ export default function Carousel({
         modules={[Pagination]}
         className="h-full w-full"
       >
-        <SwiperSlide className="bg-black text-white">
-          {Slide(image1, "Slide 1", "/")}
-        </SwiperSlide>
-        <SwiperSlide className="bg-black text-white">
-          {Slide(image2, "Slide 2", "/")}
-        </SwiperSlide>
-        <SwiperSlide className="bg-black text-white">
-          <div className="h-full flex justify-center items-center">
-            <h1 className="text-5xl">Slide 3</h1>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide className="bg-black text-white">
-          <div className="h-full flex justify-center items-center">
-            <h1 className="text-5xl">Slide 4</h1>
-          </div>
-        </SwiperSlide>
+        {slides.map((slide, index) => {
+          return (
+            <SwiperSlide key={index} className="bg-black text-white">
+              {Slide(
+                slide?.bg?.data?.attributes.url,
+                slide?.header,
+                slide?.subtitle,
+                slide?.link1,
+                slide?.link1_text
+              )}
+            </SwiperSlide>
+          );
+        })}
       </Swiper>
     </div>
   );
