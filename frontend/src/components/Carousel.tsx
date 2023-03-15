@@ -8,70 +8,28 @@ import { base } from "@/lib/util";
 import Link from "next/link";
 import { Props, ImageProps } from "@/lib/types";
 
-interface CarouselProps {
-  images?: {
-    image1?: string | any;
-    image2?: string | any;
-    image3?: string | any;
-    image4?: string | any;
-  };
-  slide1?: {
-    bg?: ImageProps;
-    image?: any;
-    header?: any;
-    subtitle?: string;
-    link1?: any;
-    link1_text?: string;
-    link2?: string;
-    link2_text?: string;
-  };
-  slide2?: {
-    bg?: ImageProps;
-    image?: any;
-    header?: any;
-    subtitle?: string;
-    link1?: any;
-    link1_text?: string;
-    link2?: string;
-    link2_text?: string;
-  };
-  slide3?: {
-    bg?: ImageProps;
-    image?: any;
-    header?: any;
-    subtitle?: string;
-    link1?: any;
-    link1_text?: string;
-    link2?: string;
-    link2_text?: string;
-  };
-  slide4?: {
-    bg?: ImageProps;
-    image?: any;
-    header?: any;
-    subtitle?: string;
-    link1?: any;
-    link1_text?: string;
-    link2?: string;
-    link2_text?: string;
-  };
-  props?: any;
+interface SlideProps {
+  bg: any;
+  image: any;
+  header: any;
+  subtitle: any;
+  link1?: any;
+  link1_text?: any;
+  link2?: any;
+  link2_text?: any;
 }
 
-export default function Carousel({
-  slide1,
-  slide2,
-  slide3,
-  slide4,
-}: CarouselProps) {
+interface CarouselProps {
+  slides: SlideProps[];
+}
+
+export default function Carousel({ slides }: CarouselProps) {
   const pagination = {
     clickable: true,
     renderBullet: function (index: number, className: string) {
       return '<span class="' + className + '">' + (index + 1) + "</span>";
     },
   };
-
-  const slides = [slide1, slide2];
 
   console.log(slides);
 
@@ -84,7 +42,13 @@ export default function Carousel({
   ) => {
     return (
       <div className="h-full flex justify-end items-center relative">
-        <Image src={base + image} alt="potatoes" fill={true} />
+        <Image
+          src={image}
+          alt={`Background image for ${title} carousel slide`}
+          fill={true}
+          placeholder="blur"
+          blurDataURL={image}
+        />
         <div className="relative z-10 w-1/2 flex justify-center">
           <div className="space-y-12 text-center">
             <h2 className="text-5xl">{title}</h2>
@@ -109,7 +73,7 @@ export default function Carousel({
           return (
             <SwiperSlide key={index} className="bg-black text-white">
               {Slide(
-                slide?.bg?.data?.attributes.url,
+                slide?.bg,
                 slide?.header,
                 slide?.subtitle,
                 slide?.link1,
@@ -119,6 +83,7 @@ export default function Carousel({
           );
         })}
       </Swiper>
+      meh
     </div>
   );
 }

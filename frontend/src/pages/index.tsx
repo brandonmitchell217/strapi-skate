@@ -23,12 +23,24 @@ export default function Home({
   // console.log(images);
   // console.log(heroSliders);
 
+  const slides = heroSliders.data.map((slide) => {
+    const attributes = slide.attributes;
+
+    return {
+      bg: base + attributes.bg?.data?.attributes.url,
+      image: attributes.image?.data.attributes.url,
+      header: attributes.header,
+      subtitle: attributes.subtitle,
+      link1: attributes.link1,
+      link1_text: attributes.link1_text,
+      link2: attributes.link2,
+      link2_text: attributes.link2_text,
+    };
+  });
+
   return (
     <section className="pt-24">
-      <Carousel
-        slide1={heroSliders.data[0].attributes}
-        slide2={heroSliders.data[1].attributes}
-      />
+      <Carousel {...{ slides }} />
 
       <ProductInterstitialLayout title="Decks">
         {products.data
