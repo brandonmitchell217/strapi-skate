@@ -6,12 +6,15 @@ import { Pagination } from "swiper";
 import Image from "next/image";
 import { base } from "@/lib/util";
 import Link from "next/link";
+import { Props } from "@/lib/types";
 
 interface CarouselProps {
-  image1: string;
-  image2?: string;
-  image3?: string;
-  image4?: string;
+  image1?: string | any;
+  image2?: string | any;
+  image3?: string | any;
+  image4?: string | any;
+  images?: Props[];
+  props?: any;
 }
 
 export default function Carousel({
@@ -19,6 +22,8 @@ export default function Carousel({
   image2,
   image3,
   image4,
+  images = [],
+  props,
 }: CarouselProps) {
   const pagination = {
     clickable: true,
@@ -27,30 +32,41 @@ export default function Carousel({
     },
   };
 
+  console.log(props);
+
+  const Slide = (
+    image: any,
+    title: string,
+    link: string,
+    button_text?: string
+  ) => {
+    return (
+      <div className="h-full flex justify-end items-center relative">
+        <Image src={base + image} alt="potatoes" fill={true} />
+        <div className="relative z-10 w-1/2 flex justify-center">
+          <div className="space-y-12 text-center">
+            <h2 className="text-5xl">{title}</h2>
+            <Link href={link} className="btn btn-primary">
+              {button_text ? button_text : "Check It Out"}
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   return (
-    <div className="h-[260px] sm:h-[300px] md:h-[375px] lg:h-[550px]">
+    <div className="h-[300px] md:h-[375px] lg:h-[550px]">
       <Swiper
         pagination={pagination}
         modules={[Pagination]}
         className="h-full w-full"
       >
         <SwiperSlide className="bg-black text-white">
-          <div className="h-full flex justify-end items-center relative">
-            <Image src={base + image1} alt="potatoes" fill={true} />
-            <div className="relative z-10 w-1/2 flex justify-center">
-              <div className="space-y-12 text-center">
-                <h1 className="text-5xl">Slide 1</h1>
-                <Link href="/" className="btn btn-primary">
-                  A link
-                </Link>
-              </div>
-            </div>
-          </div>
+          {Slide(image1, "Slide 1", "/")}
         </SwiperSlide>
         <SwiperSlide className="bg-black text-white">
-          <div className="h-full flex justify-center items-center">
-            <h1 className="text-5xl">Slide 2</h1>
-          </div>
+          {Slide(image2, "Slide 2", "/")}
         </SwiperSlide>
         <SwiperSlide className="bg-black text-white">
           <div className="h-full flex justify-center items-center">

@@ -8,19 +8,22 @@ import { base } from "@/lib/util";
 
 interface HomeProps {
   products: Props;
-  images: any;
+  images: Props;
 }
 
 export default function Home({ products, images }: HomeProps) {
-  const data = products.data.map((product) => {
-    return product.attributes;
+  const data = images.data.map((image) => {
+    return image.attributes;
   });
-  console.log(images);
+  // console.log(images);
   // console.log(products);
 
   return (
     <section className="pt-24">
-      <Carousel image1={images.data[0].attributes.bg.data.attributes.url} />
+      <Carousel
+        image1={images.data[0].attributes.bg?.data?.attributes.url}
+        image2={images.data[1].attributes.bg?.data?.attributes.url}
+      />
 
       <ProductInterstitialLayout title="Decks">
         {products.data
@@ -38,7 +41,7 @@ export default function Home({ products, images }: HomeProps) {
       </ProductInterstitialLayout>
 
       <ImageCta
-        image={base + images.data[1].attributes.bg.data.attributes.url}
+        image={base + images.data[1].attributes.bg?.data?.attributes.url}
         alt="skater dude"
         title="title"
         subtitle="subtitle"
@@ -63,7 +66,7 @@ export default function Home({ products, images }: HomeProps) {
       </ProductInterstitialLayout>
 
       <ImageCta
-        image={base + images.data[0].attributes.bg.data.attributes.url}
+        image={base + images.data[0].attributes.bg?.data?.attributes.url}
         alt="skater dude"
         title="title"
         subtitle="subtitle"

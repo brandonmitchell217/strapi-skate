@@ -4,6 +4,29 @@ export interface pagination {
   pageCount: number;
   total: number;
 }
+
+export interface ImageProps {
+  data?: {
+    attributes: {
+      formats: {
+        thumbnail: {
+          url: string;
+        };
+      };
+      url: string;
+    };
+    bg?: {
+      attributes: {
+        formats: {
+          thumbnail: {
+            url: string;
+          };
+        };
+        url: string;
+      };
+    };
+  };
+}
 export interface AttributesProps {
   key?: string | number;
   title: string;
@@ -13,6 +36,7 @@ export interface AttributesProps {
   name?: string;
   hometown?: string;
   stock?: number;
+  bg?: ImageProps;
   age?: number;
   image?: {
     data: {
