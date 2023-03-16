@@ -33,7 +33,7 @@ export default function VideoCarousel({ videos }: VideoCarouselProps) {
   }, [width]);
 
   const handleVideoClick = (index: number) => {
-    console.log(index);
+    console.log(featuredVideoIndex);
     setFeaturedVideoIndex(index);
   };
 
@@ -41,13 +41,13 @@ export default function VideoCarousel({ videos }: VideoCarouselProps) {
     <div className="max-w-6xl w-full m-auto py-8 sm:py-16 px-1 sm:px-0">
       <div className="flex flex-col gap-4">
         <div className="w-full">
-          {featuredVideoIndex !== null && (
+          {
             <ReactPlayer
               url={videos[featuredVideoIndex].link}
               height={mainSize}
               width={"100%"}
             />
-          )}
+          }
         </div>
         <div className="w-full h-28 grid grid-cols-4 gap-2">
           {videos.map((video, index) => (
@@ -56,7 +56,8 @@ export default function VideoCarousel({ videos }: VideoCarouselProps) {
                 url={video.link}
                 height={thumbSize}
                 width={"100%"}
-                light={true}
+                controls={false}
+                style={{ pointerEvents: "none" }}
               />
             </div>
           ))}
