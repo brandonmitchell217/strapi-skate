@@ -28,7 +28,6 @@ export default function Home({
 
     return {
       bg: base + attributes.bg?.data?.attributes.url,
-      image: attributes.image?.data.attributes.url,
       header: attributes.header,
       subtitle: attributes.subtitle,
       link1: attributes.link1,
@@ -37,6 +36,8 @@ export default function Home({
       link2_text: attributes.link2_text,
     };
   });
+
+  // console.log(slides);
 
   return (
     <section className="pt-24">

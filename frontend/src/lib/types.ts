@@ -32,6 +32,7 @@ export interface AttributesProps {
   title: string;
   subtitle?: string;
   header?: string;
+  link?: string;
   link1?: string;
   link2?: string;
   link1_text?: string;
@@ -95,4 +96,5 @@ export interface ProductProps {
 
 export interface TeamMembersProps {
   teamMembers: Props;
+  teamVideos: Props;
 }

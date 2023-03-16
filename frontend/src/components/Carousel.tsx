@@ -9,14 +9,13 @@ import Link from "next/link";
 import { Props, ImageProps } from "@/lib/types";
 
 interface SlideProps {
-  bg: any;
-  image: any;
-  header: any;
-  subtitle: any;
-  link1?: any;
-  link1_text?: any;
-  link2?: any;
-  link2_text?: any;
+  bg: string;
+  header: string | undefined;
+  subtitle: string | undefined;
+  link1: string | undefined;
+  link1_text: string | undefined;
+  link2?: string | undefined;
+  link2_text?: string | undefined;
 }
 
 interface CarouselProps {
@@ -31,14 +30,16 @@ export default function Carousel({ slides }: CarouselProps) {
     },
   };
 
-  console.log(slides);
+  // console.log(slides);
 
   const Slide = (
-    image: any,
-    title: string,
-    subtitle: any,
-    link: string,
-    link_text?: string
+    image: string,
+    title: string | undefined,
+    subtitle: string | undefined,
+    link1: string | undefined,
+    link_text1: string | undefined,
+    link2?: string | undefined,
+    link_text2?: string | undefined
   ) => {
     return (
       <div className="h-full flex justify-end items-center relative">
@@ -50,12 +51,23 @@ export default function Carousel({ slides }: CarouselProps) {
           blurDataURL={image}
         />
         <div className="relative z-10 w-1/2 flex justify-center">
-          <div className="space-y-12 text-center">
-            <h2 className="text-5xl">{title}</h2>
+          <div className="space-y-2 text-center">
+            <h2 className="text-3xl lg:text-5xl">{title}</h2>
             {subtitle && <p className="text-sm text-gray-300">{subtitle}</p>}
-            <Link href={link} className="btn btn-primary">
-              {link_text ? link_text : "Check it out"}
-            </Link>
+
+            <div className="flex flex-col lg:flex-row justify-center items-center gap-4">
+              <Link href={link1 ?? ""} className="btn btn-primary btn-wide">
+                {link_text1 ? link_text1 : "Check it out"}
+              </Link>
+              {link2 && (
+                <Link
+                  href={link2}
+                  className="btn btn-outline text-white btn-wide"
+                >
+                  {link_text2 ? link_text2 : "See more"}
+                </Link>
+              )}
+            </div>
           </div>
         </div>
       </div>
@@ -73,11 +85,13 @@ export default function Carousel({ slides }: CarouselProps) {
           return (
             <SwiperSlide key={index} className="bg-black text-white">
               {Slide(
-                slide?.bg,
-                slide?.header,
-                slide?.subtitle,
-                slide?.link1,
-                slide?.link1_text
+                slide.bg,
+                slide.header,
+                slide.subtitle,
+                slide.link1,
+                slide.link1_text,
+                slide.link2,
+                slide.link2_text
               )}
             </SwiperSlide>
           );

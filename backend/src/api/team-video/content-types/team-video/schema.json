@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "team_videos",
+  "info": {
+    "singularName": "team-video",
+    "pluralName": "team-videos",
+    "displayName": "team video"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "link": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    }
+  }
+}

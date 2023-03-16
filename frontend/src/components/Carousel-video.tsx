@@ -6,6 +6,7 @@ const useWindowSize = process.browser && require("usehooks-ts").useWindowSize;
 const breakpoints = [640, 768, 1024, 1280, 1536];
 
 export default function VideoCarousel() {
+  // TODO: Perhaps move this breakpoint/sizing stuff to the actual page
   const { width } = useWindowSize ? useWindowSize() : { width: undefined };
   const [mainSize, setMainSize] = React.useState("500px");
   const [thumbSize, setThumbSize] = React.useState("150px");
