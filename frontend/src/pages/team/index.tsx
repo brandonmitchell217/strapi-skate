@@ -38,7 +38,7 @@ export default function Team({ teamMembers, teamVideos }: TeamMembersProps) {
           />
         ))}
       </ProductInterstitialLayout>
-      <VideoCarousel />
+      <VideoCarousel {...{ videos }} />
     </>
   );
 }

@@ -5,11 +5,22 @@ const useWindowSize = process.browser && require("usehooks-ts").useWindowSize;
 
 const breakpoints = [640, 768, 1024, 1280, 1536];
 
-export default function VideoCarousel() {
-  // TODO: Perhaps move this breakpoint/sizing stuff to the actual page
+interface VideoProps {
+  link: string | undefined;
+  title: string | undefined;
+}
+
+interface VideoCarouselProps {
+  videos: VideoProps[];
+}
+
+export default function VideoCarousel({ videos }: VideoCarouselProps) {
   const { width } = useWindowSize ? useWindowSize() : { width: undefined };
   const [mainSize, setMainSize] = React.useState("500px");
   const [thumbSize, setThumbSize] = React.useState("150px");
+  const [featuredVideoIndex, setFeaturedVideoIndex] = React.useState(0);
+
+  console.log(videos);
 
   React.useEffect(() => {
     if (width && width < breakpoints[1]) {
@@ -21,41 +32,34 @@ export default function VideoCarousel() {
     }
   }, [width]);
 
-  const videos = [
-    { feature: true, url: "https://www.youtube.com/watch?v=N3s18dPCuVw" },
-    { feature: false, url: "https://www.youtube.com/watch?v=N3s18dPCuVw" },
-    { feature: false, url: "https://www.youtube.com/watch?v=N3s18dPCuVw" },
-    { feature: false, url: "https://www.youtube.com/watch?v=N3s18dPCuVw" },
-    { feature: false, url: "https://www.youtube.com/watch?v=N3s18dPCuVw" },
-  ];
+  const handleVideoClick = (index: number) => {
+    console.log(index);
+    setFeaturedVideoIndex(index);
+  };
 
   return (
     <div className="max-w-6xl w-full m-auto py-8 sm:py-16 px-1 sm:px-0">
       <div className="flex flex-col gap-4">
         <div className="w-full">
-          {videos
-            .filter((video) => video.feature === true)
-            .map((video) => (
-              <ReactPlayer
-                key={video.url}
-                url={video.url}
-                height={mainSize}
-                width={"100%"}
-              />
-            ))}
+          {featuredVideoIndex !== null && (
+            <ReactPlayer
+              url={videos[featuredVideoIndex].link}
+              height={mainSize}
+              width={"100%"}
+            />
+          )}
         </div>
         <div className="w-full h-28 grid grid-cols-4 gap-2">
-          {videos
-            .filter((video) => video.feature === false)
-            .map((video, i) => (
-              <div key={i}>
-                <ReactPlayer
-                  url={video.url}
-                  height={thumbSize}
-                  width={"100%"}
-                />
-              </div>
-            ))}
+          {videos.map((video, index) => (
+            <div key={index} onClick={() => handleVideoClick(index)}>
+              <ReactPlayer
+                url={video.link}
+                height={thumbSize}
+                width={"100%"}
+                light={true}
+              />
+            </div>
+          ))}
         </div>
       </div>
     </div>

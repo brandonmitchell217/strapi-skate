@@ -39,6 +39,7 @@ export interface AttributesProps {
   link2_text?: string;
   location?: string;
   description?: string;
+  feature?: boolean;
   category?: string;
   name?: string;
   hometown?: string;
