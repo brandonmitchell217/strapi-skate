@@ -44,7 +44,7 @@ function SignIn() {
 
   return (
     <section className="pt-24">
-      <form className={`p-6 h-full max-w-4xl m-auto flex flex-col gap-4`}>
+      <form className={`p-6 h-full max-w-xl m-auto flex flex-col gap-4`}>
         <label className="text-gray-600 font-medium">Email</label>
         <input
           type="email"

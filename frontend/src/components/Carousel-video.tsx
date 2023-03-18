@@ -3,7 +3,7 @@ import dynamic from "next/dynamic";
 const ReactPlayer = dynamic(() => import("react-player"), { ssr: false });
 const useWindowSize = process.browser && require("usehooks-ts").useWindowSize;
 
-const breakpoints = [640, 768, 1024, 1280, 1536];
+const breakpoints: number[] = [640, 768, 1024, 1280, 1536];
 
 interface VideoProps {
   link: string | undefined;
@@ -16,24 +16,23 @@ interface VideoCarouselProps {
 
 export default function VideoCarousel({ videos }: VideoCarouselProps) {
   const { width } = useWindowSize ? useWindowSize() : { width: undefined };
-  const [mainSize, setMainSize] = React.useState("500px");
-  const [thumbSize, setThumbSize] = React.useState("150px");
-  const [featuredVideoIndex, setFeaturedVideoIndex] = React.useState(0);
+  const [mainSize, setMainSize] = React.useState<string>("500px");
+  const [thumbSize, setThumbSize] = React.useState<string>("150px");
+  const [featuredVideoIndex, setFeaturedVideoIndex] = React.useState<number>(0);
 
-  console.log(videos);
+  // console.log(videos);
 
   React.useEffect(() => {
-    if (width && width < breakpoints[1]) {
+    if (width < breakpoints[1]) {
       setMainSize("300px");
       setThumbSize("90px");
-    } else if (width && width > breakpoints[2]) {
+    } else if (width > breakpoints[2]) {
       setMainSize("500px");
       setThumbSize("150px");
     }
   }, [width]);
 
   const handleVideoClick = (index: number) => {
-    console.log(featuredVideoIndex);
     setFeaturedVideoIndex(index);
   };
 

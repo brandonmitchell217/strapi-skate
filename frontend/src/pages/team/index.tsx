@@ -8,11 +8,6 @@ import MemberCard from "@/components/MemberCard";
 import ProductInterstitialLayout from "@/layouts/ProductInterstitial";
 import VideoCarousel from "@/components/Carousel-video";
 
-// interface TeamProps{
-//   teamMembers: TeamMembersProps;
-//   teamVideos: TeamMembersProps;
-// }
-
 export default function Team({ teamMembers, teamVideos }: TeamMembersProps) {
   const videos = teamVideos.data.map((video) => {
     const attributes = video.attributes;

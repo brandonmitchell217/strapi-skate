@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "items",
+  "info": {
+    "singularName": "item",
+    "pluralName": "items",
+    "displayName": "item"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "decks": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::deck.deck"
+    },
+    "shirts": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::shirt.shirt"
+    },
+    "shoes": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::shoe.shoe"
+    }
+  }
+}
